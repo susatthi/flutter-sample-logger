@@ -1,6 +1,19 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sample_logger/logger.dart';
-import 'package:flutter_sample_logger/simple_logger.dart';
+import 'package:simple_logger/simple_logger.dart';
+
+final simpleLogger = SimpleLogger()
+  ..setLevel(
+    kReleaseMode ? Level.OFF : Level.ALL,
+    // includeCallerInfo: true,
+  )
+  ..onLogged = (log, info) {
+    if (info.level >= Level.SEVERE) {
+      // 致命的なエラーが発生したのでデバッグ実行のときはAssertionErrorで止める
+      // Crashlytics でログを飛ばすのもあり
+      // throw AssertionError(log);
+    }
+  };
 
 void main() {
   runApp(const MyApp());
@@ -60,13 +73,32 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
-      simpleLogger.info(_counter);
-      logger.i(_counter);
+      // simpleLogger.info(_counter);
+      // logger.i(_counter);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // simple_logger
+
+    // ログレベル
+    simpleLogger.finer('Hello finer!');
+    simpleLogger.fine('Hello fine!');
+    simpleLogger.config('Hello config!');
+    simpleLogger.info('Hello info!');
+    simpleLogger.warning('Hello warning!');
+    simpleLogger.severe('Hello severe!');
+    simpleLogger.shout('Hello shout!');
+
+    // 型
+    simpleLogger.info(1000);
+    simpleLogger.info(true);
+    simpleLogger.info([1, 2, 3]);
+    simpleLogger.info({'key': 'key', 'value': 'value'});
+    simpleLogger.info(Exception('例外もいけます'));
+    simpleLogger.info(() => '関数もいけます');
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
