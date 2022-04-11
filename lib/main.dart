@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample_logger/simple_logger.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      simpleLogger.info(_counter);
     });
   }
 
