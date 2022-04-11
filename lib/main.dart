@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample_logger/logger.dart';
 import 'package:flutter_sample_logger/simple_logger.dart';
 
 void main() {
@@ -60,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
       simpleLogger.info(_counter);
+      logger.i(_counter);
     });
   }
 
