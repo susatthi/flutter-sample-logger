@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample_logger/logger.dart';
+import 'package:flutter_sample_logger/logging.dart';
 import 'package:flutter_sample_logger/simple_logger.dart';
+import 'package:logging/logging.dart' as logging_package;
 
 void main() {
+  logging_package.Logger.root.level = logging_package.Level.ALL;
+  logging_package.Logger.root.onRecord.listen((logging_package.LogRecord rec) {
+    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
+
   runApp(const MyApp());
 }
 
@@ -99,6 +106,23 @@ class _MyHomePageState extends State<MyHomePage> {
     logger.i({'key': 'key', 'value': 'value'});
     logger.i(Exception('例外もいけます'));
     logger.i(() => '関数もいけます');
+
+    // logging
+    logging.finer('Hello finer!');
+    logging.fine('Hello fine!');
+    logging.config('Hello config!');
+    logging.info('Hello info!');
+    logging.warning('Hello warning!');
+    logging.severe('Hello severe!');
+    logging.shout('Hello shout!');
+
+    // 型
+    logging.info(1000);
+    logging.info(true);
+    logging.info([1, 2, 3]);
+    logging.info({'key': 'key', 'value': 'value'});
+    logging.info(Exception('例外もいけます'));
+    logging.info(() => '関数もいけます');
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.

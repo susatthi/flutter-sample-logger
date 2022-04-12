@@ -1,10 +1,10 @@
 import 'package:logger/logger.dart';
 
 final logger = Logger(
-  filter: MyFilter(),
-  printer: MyPrinter(),
-  // printer: PrefixPrinter(PrettyPrinter(colors: false)),
-);
+    // filter: MyFilter(),
+    // printer: MyPrinter(),
+    // printer: PrefixPrinter(PrettyPrinter(colors: false)),
+    );
 
 class MyFilter extends LogFilter {
   @override
