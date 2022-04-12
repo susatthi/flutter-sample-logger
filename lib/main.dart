@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample_logger/developer.dart';
 import 'package:flutter_sample_logger/logger.dart';
 import 'package:flutter_sample_logger/logging.dart';
 import 'package:flutter_sample_logger/simple_logger.dart';
@@ -123,6 +124,17 @@ class _MyHomePageState extends State<MyHomePage> {
     logging.info({'key': 'key', 'value': 'value'});
     logging.info(Exception('例外もいけます'));
     logging.info(() => '関数もいけます');
+
+    // develogger
+    develogger.log('Hello finer!');
+
+    // 型
+    develogger.log(1000);
+    develogger.log(true);
+    develogger.log([1, 2, 3]);
+    develogger.log({'key': 'key', 'value': 'value'});
+    develogger.log(Exception('例外もいけます'));
+    develogger.log(() => '関数もいけます');
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
