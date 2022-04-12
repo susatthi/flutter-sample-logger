@@ -1,6 +1,6 @@
 import 'dart:developer' as developer;
 
-final develogger = Develogger();
+final logger = Develogger();
 
 class Develogger {
   void log(Object? message) {
@@ -14,4 +14,17 @@ class Develogger {
     }
     developer.log(msg, name: 'Develogger');
   }
+}
+
+void main() {
+  // ログレベル
+  logger.log('Hello finer!');
+
+  // 型
+  logger.log(1000);
+  logger.log(true);
+  logger.log([1, 2, 3]);
+  logger.log({'key': 'key', 'value': 'value'});
+  logger.log(Exception('例外もいけます'));
+  logger.log(() => '関数もいけます');
 }

@@ -29,3 +29,21 @@ class MyPrinter extends LogPrinter {
     return [msg];
   }
 }
+
+void main() {
+  // ログレベル
+  logger.v('Hello verbose!');
+  logger.d('Hello debug!');
+  logger.i('Hello info!');
+  logger.w('Hello warning!');
+  logger.e('Hello error!');
+  logger.wtf('Hello wtf!');
+
+  // 型
+  logger.i(1000);
+  logger.i(true);
+  logger.i([1, 2, 3]);
+  logger.i({'key': 'key', 'value': 'value'});
+  logger.i(Exception('例外もいけます'));
+  logger.i(() => '関数もいけます');
+}
