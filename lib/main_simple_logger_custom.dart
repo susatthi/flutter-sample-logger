@@ -4,7 +4,7 @@ import 'package:simple_logger/simple_logger.dart';
 
 final logger = SimpleLogger()
   ..formatter = (info) {
-    // ログ出力内容をカスタマイズ
+    // ログ出力内容をカスタマイズできる
     return '[${info.level}] '
         '${DateFormat('HH:mm:ss.SSS').format(info.time)} '
         '[${info.callerFrame ?? 'caller info not available'}] '

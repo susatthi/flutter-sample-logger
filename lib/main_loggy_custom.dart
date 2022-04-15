@@ -32,6 +32,22 @@ void main() {
     ),
   );
 
+  // mixinを使った例
+  SampleUi();
+  SampleNetwork();
+
   logger.info('Hello logger!');
   logger.error(Exception('例外を投げてみる'));
+}
+
+class SampleUi with UiLoggy {
+  SampleUi() {
+    loggy.info('This is info message');
+  }
+}
+
+class SampleNetwork with NetworkLoggy {
+  SampleNetwork() {
+    loggy.info('This is info message');
+  }
 }

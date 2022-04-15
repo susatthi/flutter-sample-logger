@@ -3,7 +3,7 @@ import 'package:logging/logging.dart';
 
 final logger = Logger('MyLogger');
 
-// 別インスタンスのロガーを作ることも出来る
+// 別インスタンスのロガーを作ることもできる
 final logger2 = Logger('MyLogger2');
 
 void main() {

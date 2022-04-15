@@ -2,7 +2,8 @@ import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
 final logger = Logger(
-  // ログ出力内容をカスタマイズ
+  // ログ出力内容をカスタマイズできる
+  // あらかじめ用意されているPrettyPrinterをカスタマイズした例
   printer: PrettyPrinter(
       methodCount: 1, // 表示されるコールスタックの数
       errorMethodCount: 5, // 表示されるスタックトレースのコールスタックの数
@@ -13,15 +14,16 @@ final logger = Logger(
       ),
 );
 
-// 別インスタンスのロガーを作ることも出来る
+// 別インスタンスのロガーを作ることもできる
 final logger2 = Logger(
-  // ログ出力内容をシンプルにカスタマイズ
+  // ログ出力内容をシンプルにカスタマイズした例
   printer: MyLogPrinter(),
 
-  // ログ出力したあとに処理を挿入
+  // ログ出力したあとに処理を挿入する
   output: MyLogOutput(),
 );
 
+/// シンプルな出力
 class MyLogPrinter extends LogPrinter {
   @override
   List<String> log(LogEvent event) {
@@ -43,6 +45,7 @@ class MyLogPrinter extends LogPrinter {
   }
 }
 
+/// 致命的なエラーが起きたときはAssertionで処理を止める
 class MyLogOutput extends ConsoleOutput {
   @override
   void output(OutputEvent event) {
