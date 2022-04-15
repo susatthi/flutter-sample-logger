@@ -1,5 +1,7 @@
 import 'dart:developer' as developer;
 
+import 'package:flutter/foundation.dart';
+
 final logger = Develogger();
 
 class Develogger {
@@ -12,15 +14,16 @@ class Develogger {
     } else {
       msg = message.toString();
     }
-    developer.log(msg, name: 'Develogger');
+
+    // リリースビルドは出力しない、デバッグビルドは出力する
+    if (!kReleaseMode) {
+      developer.log(msg, name: 'Develogger');
+    }
   }
 }
 
 void main() {
-  // ログレベル
-  logger.log('Hello finer!');
-
-  // 型
+  logger.log('Hello logger!');
   logger.log(1000);
   logger.log(true);
   logger.log([1, 2, 3]);

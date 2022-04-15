@@ -3,25 +3,19 @@ import 'package:logging/logging.dart';
 final logger = Logger('MyLogger');
 
 void main() {
+  // すべてログ出力する
   Logger.root.level = Level.ALL;
+
+  // ログ出力内容を定義する（実装必須）
   Logger.root.onRecord.listen((LogRecord rec) {
-    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+    print('[${rec.loggerName}] ${rec.level.name}: ${rec.time}: ${rec.message}');
   });
 
-  // ログレベル
-  logger.finer('Hello finer!');
-  logger.fine('Hello fine!');
-  logger.config('Hello config!');
-  logger.info('Hello info!');
-  logger.warning('Hello warning!');
-  logger.severe('Hello severe!');
-  logger.shout('Hello shout!');
-
-  // 型
-  logger.info(1000);
-  logger.info(true);
+  logger.finer('Hello logger!');
+  logger.fine(1000);
+  logger.config(true);
   logger.info([1, 2, 3]);
-  logger.info({'key': 'key', 'value': 'value'});
-  logger.info(Exception('例外もいけます'));
-  logger.info(() => '関数もいけます');
+  logger.warning({'key': 'key', 'value': 'value'});
+  logger.severe(Exception('例外もいけます'));
+  logger.shout(() => '関数もいけます');
 }
