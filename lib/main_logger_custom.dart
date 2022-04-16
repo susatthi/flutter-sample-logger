@@ -5,13 +5,13 @@ final logger = Logger(
   // ログ出力内容をカスタマイズできる
   // あらかじめ用意されているPrettyPrinterをカスタマイズした例
   printer: PrettyPrinter(
-      methodCount: 1, // 表示されるコールスタックの数
-      errorMethodCount: 5, // 表示されるスタックトレースのコールスタックの数
-      lineLength: 120, // 出力するログ1行の幅
-      colors: true, // メッセージに色をつけるかどうか
-      printEmojis: true, // 絵文字を出力するかどうか
-      printTime: true // タイムスタンプを出力するかどうか
-      ),
+    methodCount: 1, // 表示されるコールスタックの数
+    errorMethodCount: 5, // 表示されるスタックトレースのコールスタックの数
+    lineLength: 120, // 出力するログ1行の幅
+    colors: true, // メッセージに色をつけるかどうか
+    printEmojis: true, // 絵文字を出力するかどうか
+    printTime: true, // タイムスタンプを出力するかどうか
+  ),
 );
 
 // 別インスタンスのロガーを作ることもできる
@@ -45,14 +45,13 @@ class MyLogPrinter extends LogPrinter {
   }
 }
 
-/// 致命的なエラーが起きたときはAssertionで処理を止める
 class MyLogOutput extends ConsoleOutput {
   @override
   void output(OutputEvent event) {
     super.output(event);
     if (event.level.index >= Level.error.index) {
-      // 致命的なエラーが発生したのでAssertionで止めるとStackTraceも表示される
-      throw AssertionError('Stopped by logger');
+      // 致命的なエラーが発生したのでAssertionErrorをthrowしてStackTraceを表示する
+      throw AssertionError('View stack trace by logger');
     }
   }
 }
@@ -62,4 +61,5 @@ void main() {
   logger.w('Hello logger warning!', Exception('loggerの例外'), StackTrace.current);
   logger2.i('Hello logger!');
   logger2.e(Exception('例外を投げてみる'));
+  logger2.i('処理は止まらない');
 }

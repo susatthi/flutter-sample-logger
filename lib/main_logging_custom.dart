@@ -14,12 +14,13 @@ void main() {
   Logger.root.onRecord.listen((LogRecord rec) {
     print('[${rec.loggerName}] ${rec.level.name}: ${rec.time}: ${rec.message}');
     if (rec.level >= Level.SEVERE) {
-      // 致命的なエラーが発生したのでAssertionで止めるとStackTraceも表示される
-      throw AssertionError('Stopped by logger');
+      // 致命的なエラーが発生したのでAssertionErrorをthrowしてStackTraceを表示する
+      throw AssertionError('View stack trace by logger');
     }
   });
 
   logger.info('Hello logger!');
   logger2.info('ロガーを切り替えることが出来ます。');
   logger.severe(Exception('例外を投げてみる'));
+  logger.info('処理は止まらない');
 }
